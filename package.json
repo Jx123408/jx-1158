@@ -1,7 +1,7 @@
 {
-  "name": "my-project",
+  "name": "my-new-project",
   "version": "1.0.0",
-  "description": "This is my project",
+  "description": "This is my new project for ISGC",
   "main": "main.html",
   "scripts": {
     "start": "node app.js",
