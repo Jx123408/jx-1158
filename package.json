@@ -4,7 +4,7 @@
   "description": "This is my new project for ISGC",
   "main": "main.html",
   "scripts": {
-    "start": "node app.js",
+    "start": "main.html",
     "test": "mocha"
   },
   "dependencies": {
