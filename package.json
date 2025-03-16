@@ -2,7 +2,7 @@
   "name": "my-project",
   "version": "1.0.0",
   "description": "This is my project",
-  "main": "main.js",
+  "main": "main.html",
   "scripts": {
     "start": "node app.js",
     "test": "mocha"
