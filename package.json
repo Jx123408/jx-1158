@@ -1,0 +1,20 @@
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "This is my project",
+  "main": "main.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash": "^4.17.21"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jx123408/jx-1158.git"
+  },
+  "author": "Jx123408",
+  "license": "MIT"
+}
