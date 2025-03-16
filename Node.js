@@ -1,11 +1,15 @@
-# Download and install fnm:
-curl -o- https://fnm.vercel.app/install | bash
+// server.mjs
+import { createServer } from 'node:http';
 
-# Download and install Node.js:
-fnm install 22
+const server = createServer((req, res) => {
+res.writeHead(200, { 'Content-Type': 'text/plain' });
+res.end('Hello World!\n');
+});
 
-# Verify the Node.js version:
-node -v # Should print "v22.14.0".
+// starts a simple http server locally on port 3000
+server.listen(3000, '127.0.0.1', () => {
+console.log('Listening on 127.0.0.1:3000');
+});
 
-# Verify npm version:
-npm -v # Should print "10.9.2".
+// run with `node server.mjs`
+
