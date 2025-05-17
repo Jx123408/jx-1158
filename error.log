@@ -1,0 +1,54 @@
+2025-04-26T16:40:29.730Z - ERROR: Failed to fetch video data
+Error: Request failed with status code 403
+    at fetchVideoData (/app/index.js:39:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async /app/index.js:87:27
+
+2025-04-26T16:40:30.496Z - ERROR: Failed to fetch video data
+Error: Request failed with status code 403
+    at fetchVideoData (/app/index.js:39:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async /app/index.js:87:27
+
+2025-04-26T16:41:07.005Z - ERROR: Failed to fetch video data
+Error: Request failed with status code 403
+    at fetchVideoData (/app/index.js:39:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async /app/index.js:87:27
+
+2025-04-26T16:41:07.778Z - ERROR: Failed to fetch video data
+Error: Request failed with status code 403
+    at fetchVideoData (/app/index.js:39:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async /app/index.js:87:27
+
+2025-04-26T16:41:43.783Z - ERROR: Failed to fetch video data
+Error: Request failed with status code 403
+    at fetchVideoData (/app/index.js:39:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async /app/index.js:87:27
+
+2025-04-26T16:41:44.355Z - ERROR: Failed to fetch video data
+Error: Request failed with status code 403
+    at fetchVideoData (/app/index.js:39:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async /app/index.js:87:27
+
+2025-04-26T16:41:45.475Z - ERROR: Failed to fetch video data
+Error: Request failed with status code 403
+    at fetchVideoData (/app/index.js:39:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async /app/index.js:87:27
+
+2025-04-26T16:41:45.735Z - ERROR: Failed to fetch video data
+Error: Request failed with status code 403
+    at fetchVideoData (/app/index.js:39:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async /app/index.js:87:27
+
