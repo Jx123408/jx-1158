@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title><%= query %> - わかめtube</title>
+  <meta name="description" content="まっしろになっていく">
+  <meta property="og:title" content="わかめtube">
+  <meta property="og:description" content="まっしろになっていく">
+  <meta property="og:site_name" content="わかめtube | まっしろ">
+  <meta property="og:image" content="https://cdn.glitch.global/441c91ae-2a7f-4142-9ffb-ab0c7066dfa1/IMG_1142.png?v=1718674777380">
+  <meta name="theme-color" content="#ff8181">
+  <link rel="shortcut icon" href="https://cdn.glitch.global/441c91ae-2a7f-4142-9ffb-ab0c7066dfa1/IMG_1142.png?v=1718674777380">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="author" content="わかめtube | まっしろ">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <header>
+<div class="banner" style="position: relative; display: flex; align-items: center; justify-content: space-between; width: 100% !important;">
+    <button class="btn btn-link" id="help-menu-btn" style="margin-right: 10px;" onclick="toggleHelpSidebar()">=</button>
+    <button class="btn btn-link" onclick="window.location.href='/'">ホーム</button>
+    
+    <div style="display: flex; flex: 1 !important; justify-content: center;">
+        <form class="d-flex" action="/s" method="get" style="display: flex !important; flex: 1 !important; max-width: 600px;">
+            <input id="searchbox" name="q" class="form-control" type="text" 
+                   placeholder="キーワードを入力..." aria-label="Search" required
+                   style="border-radius: 40px 0 0 40px !important; width: 100% !important; flex: 1 !important;">
+            <button type="submit" class="btn btn-search" 
+                    style="border-radius: 0 40px 40px 0 !important; margin-left: -1px !important; background-color: #f8f8f8 !important;">
+                <img src="https://raw.githubusercontent.com/siawaseok3/siawaseok3.github.io/refs/heads/main/%E6%A4%9C%E7%B4%A2%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.png" alt="検索" style="width: 20px; height: 20px;">
+            </button>
+        </form>
+    </div>
+  <button style="text-align: end;" id="goToBbsButton">掲示板</button>
+</div>
+
+<div id="a-help-sidebar" class="a-sidebar" style="position: fixed; top: 0; left: -200px; width: 180px; height: auto; background: #f8f9fa; box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); padding: 10px; transition: left 0.3s ease-in-out;">
+   <button class="btn btn-link menuristt" onclick="window.location.href='/send'">問い合わせ</button><br><br>
+   <button class="btn btn-link menuristt" onclick="window.location.href='/blog/help'">ヘルプ</button><br><br>
+   <button class="btn btn-link menuristt" onclick="toggleHelpSidebar()">閉じる</button>
+</div>
+<style>
+
+    #goToBbsButton {
+            padding: 8px 18px;
+            font-size: 15px;
+            color: black;
+            background-color: #c0c0c0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #goToBbsButton:hover {
+            background-color: #a9a9a9;
+        }
+
+
+.menuristt {
+    text-decoration: none;
+}
+.menuristt {
+    text-decoration: none;
+}
+
+    </style>
+
+<script>
+  
+document.getElementById('goToBbsButton').addEventListener('click', function() {
+    window.location.href = '/bbs';
+});
+  
+function toggleHelpSidebar() {
+    var sidebar = document.getElementById("a-help-sidebar");
+    if (sidebar.style.left === "-200px" || sidebar.style.left === "") {
+        sidebar.style.left = "0";
+    } else {
+        sidebar.style.left = "-200px";
+    }
+}
+</script>
+    
+    
+
+<div class="results">
+  <% res.items.forEach(video => { %>
+    <% if (video.type === 'video') { %>
+      <div class="video-card">
+        <a href="/w/<%= video.id %>" target="_top" class="thumbnail-container">
+          <img loading="lazy" src="https://img.youtube.com/vi/<%= video.id %>/mqdefault.jpg" class="video-thumbnail" />
+          <span class="video-duration"><%= video.duration %></span>
+        </a>
+        <div class="rVideoInfo">
+          <h4><a href="/w/<%= video.id %>" target="_top"><%= video.title %></a></h4>
+          <span class="rVideoAuthor"><a href="/c/<%= video.author.channelID %>" target="_top"><%= video.author.name %></a></span>
+          <br>
+          <small><%= video.uploadedAt %></small>
+        </div>
+      </div>
+    <% } else if (video.type === 'playlist') { %>
+      <div class="playlist-card">
+        <a href="/p/<%= video.playlistID %>" target="_top" class="thumbnail-container">
+          <img loading="lazy" style="opacity: 0.7" src="<%= video.firstVideo.bestThumbnail.url.slice(19) %>" class="video-thumbnail" />
+          <div class="playlist-overlay">再生リスト (<%= video.length %>本以上の動画)</div>
+        </a>
+        <p class="channel-name"><a href="/u/<%= video.owner.id %>" target="_top"><%= video.owner.name %></a></p>
+      </div>
+    <% } else if (video.type === 'channel') { %>
+      <div class="channel-card">
+        <a href="/c/<%= video.channelID %>" target="_top">
+          <img src="https://wakamecomment.glitch.me/ytc/<%= video.id %>" class="channel-icon" />
+        </a>
+        <div class="channel-info">
+          <p class="video-title"><a href="/c/<%= video.channelID %>" target="_top"><%= video.name %></a></p>
+          <p class="video-description"><%= video.description || video.descriptionShort %></p>
+          <p class="video-meta"><%= video.subscribers %> 人の登録者</p>
+        </div>
+      </div>
+    <% } %>
+  <% }); %>
+</div>
+ <style>
+body {
+  font-family: 'Nico Moji', sans-serif;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+.video-card a {
+      color: #000; 
+  text-decoration: none !important;
+}
+
+/* aaaaRelated videos container */
+.related-videos-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px; 
+  background-color: #f8f8f8;
+}
+
+/* Video card styling */
+.video-card {
+  width: 230px; 
+  margin: 6px;
+  padding: 5px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.video-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Thumbnail image */
+.video-card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.video-title a{
+        color: #000000;
+      }
+/* タイトル */
+.video-card .video-title {
+  font-size: 13px;
+  font-weight: bold;
+  margin: 5px 0;
+  color: #000; /* 黒 */
+  text-decoration: none !important;
+}
+
+/* 作者 */
+.video-card .video-actor {
+  font-size: 11px;
+  color: #666; 
+}
+
+.video-card .video-details {
+  font-size: 10px; 
+  color: #666;
+  text-decoration: none !important;
+}
+.thumbnail-container {
+  position: relative;
+  display: inline-block;
+}
+
+.video-thumbnail {
+  width: 100%;
+  border-radius: 5px;
+  display: block;
+}
+
+.video-duration {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.7); 
+  color: white;
+  padding: 2px 5px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+    .rVideoInfo h4 {
+      display: -webkit-box;
+      -webkit-line-clamp: 4; 
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    </style>
+
+
+
+
+  <div class="pagination">
+    <a class="btn" href="/s?q=<%= query %>&p=<%= page+1 %>">もっと読み込む</a>
+  </div>
+
+      
+
+  <style>
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+  </style>
+<script>
+$(function () {
+    $('#searchbox').autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/suggest',
+                data: { keyword: request.term },
+                success: function (data) {
+                    response(data);
+                }
+            });
+        },
+        delay: 1,
+        select: function (event, ui) {
+            $('#searchbox').val(ui.item.value);
+            $('form').submit();
+        }
+    });
+});
+</script>
+</body>
+
+</html>
