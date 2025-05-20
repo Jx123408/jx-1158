@@ -881,7 +881,7 @@ const compression = require("compression");
 
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5193;
 const API_URL = "https://yukibbs-server.onrender.com/";
 
 const CACHE_DURATION = 5000;
@@ -971,7 +971,7 @@ app.use((req, res) => {
 	});
 });
 
-const listener = app.listen(process.env.PORT || 3000, () => {
+const listener = app.listen(process.env.PORT || 5193, () => {
 	console.log("Your app is now listening on port", listener.address().port);
 });
 
